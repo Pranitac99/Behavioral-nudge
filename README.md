@@ -9,6 +9,17 @@ Using smart meter data, we simulate an A/B experiment:
 
 We compare energy consumption patterns and resulting CO₂ emissions between the two groups.
 
+### Data
+- London smart meter dataset
+- Half-hourly household electricity usage
+- Aggregated into daily household-level metrics
+
+### Feature Engineering
+- Total daily consumption
+- Peak vs off-peak usage
+- Off-peak usage share
+- Estimated CO₂ emissions
+
 ---
 
 ## Results
