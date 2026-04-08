@@ -1,48 +1,31 @@
 # Behavioral Nudge A/B Test: Reducing CO₂ Emissions
 
-## Overview
-This project simulates an A/B experiment to evaluate whether CO₂-based behavioral nudges can reduce household electricity-related emissions.
-
-Using smart meter data from London households, we analyze how shifting electricity usage from peak to off-peak hours impacts carbon emissions.
-
----
-
-## Problem
-Electricity generated during peak hours often has higher carbon intensity. Encouraging users to shift consumption to off-peak hours can reduce emissions.
-
----
-
 ## Approach
+This project analyzes whether behavioral nudges can reduce carbon emissions by encouraging users to shift electricity usage to off-peak hours.
 
-### Data
-- London Smart Meter dataset (half-hourly household energy usage)
-- ~50 households sampled for analysis
+Using smart meter data, we simulate an A/B experiment:
+- **Control group**: no intervention  
+- **Treatment group**: nudges encouraging off-peak usage  
 
-### Feature Engineering
-- Aggregated half-hourly data into daily household metrics
-- Created:
-  - total energy consumption
-  - peak and off-peak usage
-  - off-peak share
+We compare energy consumption patterns and resulting CO₂ emissions between the two groups.
 
+---
 
-### Experiment Design
-- Randomly assigned households to control and treatment groups
-- Simulated a behavioral nudge shifting 10% of peak usage to off-peak
-- Measured impact on CO₂ emissions
+## Results
+- Treatment group increased off-peak usage  
+- Adjusted CO₂ emissions decreased compared to control  
+- Statistical testing (t-test) confirms the difference is significant  
 
-### Results
-- CO₂ reduction: ~1.6%
-- Statistically significant (p < 0.001)
+---
 
-### Conclusion
+## Conclusion
 Behavioral nudges can reduce carbon emissions by encouraging off-peak electricity usage.
 
 Even small percentage improvements can scale to meaningful environmental impact.
 
+---
 
-
-### SQL Transformation
+## SQL Transformation
 Used SQL to aggregate raw time-series data into daily features:
 
 ```sql
@@ -54,21 +37,28 @@ SELECT
     SUM(CASE WHEN is_peak = 0 THEN energy_kwh ELSE 0 END) AS offpeak_kwh
 FROM energy
 GROUP BY user_id, date;
-'''
+```
 
-Tech Stack
-Python
-SQL (SQLite)
-Pandas
-NumPy
-SciPy
-VS Code / Jupyter Notebook
-Note
+---
 
-This project uses the "Smart Meters in London" dataset available on Kaggle.
+## Tech Stack
+- Python
+- SQL (SQLite)
+- Pandas
+- NumPy
+- SciPy
+- VS Code / Jupyter Notebook
+
+---
+
+## Dataset
+This project uses the **"Smart Meters in London"** dataset available on Kaggle.
 
 Source: https://www.kaggle.com/datasets/jeanmidev/smart-meters-in-london
 
 The dataset contains anonymized household electricity consumption data and is used here for educational and analysis purposes.
 
+---
+
+## Note
 This project simulates an A/B experiment using historical data. No real intervention was conducted.
